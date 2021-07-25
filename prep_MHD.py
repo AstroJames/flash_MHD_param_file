@@ -55,34 +55,34 @@ class UpdateFlashParameterFile:
 				 total_turn_overs_in,
 				 forcing_file_in,
 				 file_name_in):
-		self.mach 						= mach_in
-		self.mach_alfven 				= mach_alfven_in
-		self.driving_scale 				= driving_scale_in
+		self.mach 				= mach_in
+		self.mach_alfven 			= mach_alfven_in
+		self.driving_scale 			= driving_scale_in
 		self.dumps_per_turnover			= dumps_per_turnover_in
 		self.total_turn_overs 			= total_turn_overs_in
-		self.file_name 					= file_name_in
-		self.forcing_file 				= forcing_file_in
-		self.debug 						= True
-		self.B0 						= []
-		self.tmax 						= []
-		self.checkpointFileIntervalTime = []
+		self.file_name 				= file_name_in
+		self.forcing_file 			= forcing_file_in
+		self.debug 				= True
+		self.B0 				= []
+		self.tmax 				= []
+		self.checkpointFileIntervalTime 	= []
 		self.plotFileIntervalTime 		= []
-		self.movie_dt_dump 				= []
-		self.particleFileIntervalTime 	= []
-		self.dtmax 						= []
+		self.movie_dt_dump 			= []
+		self.particleFileIntervalTime 		= []
+		self.dtmax 				= []
 
 	def compute_B0(self):
-		rho_0 = 1 	# assumes rho_0 = 1
-		c_s = 1		# assumes the sound speed = 1
-		self.B0 = 2*c_s*np.sqrt(rho_0*np.pi) * self.mach / self.mach_alfven
+		rho_0 		= 1 	# assumes rho_0 = 1
+		c_s 		= 1		# assumes the sound speed = 1
+		self.B0 	= 2*c_s*np.sqrt(rho_0*np.pi) * self.mach / self.mach_alfven
 
 	def compute_turnover_time_parameters(self):
-		self.tmax = self.total_turn_overs / (self.driving_scale * self.mach) 							# the maxmimum time domain
-		self.checkpointFileIntervalTime = self.tmax / (self.total_turn_overs * self.dumps_per_turnover)	# the dump time for checkpoints
-		self.plotFileIntervalTime = self.checkpointFileIntervalTime										# the dump time for plot files
-		self.movie_dt_dump = self.plotFileIntervalTime / 10												# the dump time for movie files
-		self.particleFileIntervalTime = self.movie_dt_dump												# the dump time for particles files
-		self.dtmax = self.movie_dt_dump / 2																# the maximum integration time step
+		self.tmax 				= self.total_turn_overs / (self.driving_scale * self.mach) 	# the maxmimum time domain
+		self.checkpointFileIntervalTime 	= self.tmax / (self.total_turn_overs * self.dumps_per_turnover)	# the dump time for checkpoints
+		self.plotFileIntervalTime 		= self.checkpointFileIntervalTime				# the dump time for plot files
+		self.movie_dt_dump 			= self.plotFileIntervalTime / 10				# the dump time for movie files
+		self.particleFileIntervalTime 		= self.movie_dt_dump						# the dump time for particles files
+		self.dtmax 				= self.movie_dt_dump / 						# the maximum integration time step
 
 	def replace_magnetic_field(self,line):
 		# compute the desired B0 for mach, ma0
@@ -183,7 +183,7 @@ class UpdateFlashParameterFile:
 		f.close()
 		remove(self.file_name)
 		move(tempfile, self.file_name)
-		os.chmod(self.file_name, 644)
+		#os.chmod(self.file_name, 644)
 
 def main():
 
