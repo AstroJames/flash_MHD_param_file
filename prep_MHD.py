@@ -48,13 +48,13 @@ args = vars(ap.parse_args())
 class UpdateFlashParameterFile:
 
 	def __init__(self,
-				 mach_in,
-				 mach_alfven_in,
-				 driving_scale_in,
-				 dumps_per_turnover_in,
-				 total_turn_overs_in,
-				 forcing_file_in,
-				 file_name_in):
+		     mach_in,
+		     mach_alfven_in,
+		     driving_scale_in,
+		     dumps_per_turnover_in,
+		     total_turn_overs_in,
+		     forcing_file_in,
+		     file_name_in):
 		self.mach 				= mach_in
 		self.mach_alfven 			= mach_alfven_in
 		self.driving_scale 			= driving_scale_in
@@ -202,12 +202,12 @@ def main():
 
 	# read in the flash parameters
 	flash_paramters = UpdateFlashParameterFile(mach,
-											   mach_alfven,
-											   driving_scale,
-											   dumps_per_T,
-											   total_T,
-											   forcing_file,
-											   file_name)
+						   mach_alfven,
+						   driving_scale,
+						   dumps_per_T,
+						   total_T,
+						   forcing_file,
+						   file_name)
 
 	# udpate the flash.par parameter file
 	flash_paramters.update_flash_par()
